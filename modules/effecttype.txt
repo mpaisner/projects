@@ -1,0 +1,39 @@
+#All effects also have a field "type"
+
+BASE EFFECTS:
+	stops_city_event_prob(event = [famine, nuke], prob = [100, 100])
+	causes_per_turn_prob(event = meltdown, prob = [2])
+	per_square_resource_change(criteriontype = [terrain, terraform, all], criterionval = [[road or railroad]; farm], resource = [food, shield, trade], effecttype = [+/-, %/val], effect = [int/%])
+	city_resource_change(resource = [any], effecttype = [+/-, %/val], effect = [int/%])
+	happiness_change(affects = [happy, unhappy], type = [+/-], effect = [int])
+
+Special effects:
+	change_trade_route_bonus(effecttype = [+/-, %/val], effect = [int/%])
+	change_trade_route_val(effecttype = [+/-, %/val], effect = [int/%])
+	granary(food_kept% = [50])
+	unit_heal(unittype = [land, sea, air, etc.], effecttype = [+/-, %/val], effect = [int/%])
+	new_veteran_mod(unittype = [land, sea, air, etc.], effecttype = [veteran], effect = [true])
+	capital()
+	defense_bonus(against = [land, ...], effecttype = [+/-, %/num], val = [%/num])
+	bribe_cost(effecttype = [+/-, %/num], val = [%/num])
+	global_warming(???)
+	size_bound(bound = [1, 2])
+	foreign_service_effect_mod(effecttype = [+/-, %/num], val = [%/num])
+
+Construction restrictions:
+	xor(others = [power plant types], num = 1)
+	prereq(building = [...])
+
+operation restrictions:
+	max_effect_num(type = [perturn, total], num = [int])
+	operation_order(order = [default == 0]) 
+
+changes:
+	#not contained in improvements; store these elsewhere.
+	
+
+
+notes:
+	-prob > 100 = more than once/turn. Certain once for each 100 prob, i.e. 250 prob -> 2-3 happenings/turn
+	-in ordering, all same order val go together, only effects end of turn.
+	-corruption/waste considered "resources", only subtracted from gross production at end of calculations. This simplifies courthouses.

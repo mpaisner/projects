@@ -1,0 +1,21 @@
+Solution:
+	<dispatch-worker w1 hq h1>
+	<dispatch-worker w3 hq h2>
+	<lay-foundation h2 m1 w3>
+	<dispatch-worker w1 h1 hq>
+	<load-hoses w1>
+	<dispatch-worker w1 hq h1>
+	<put-out-fire w1 h1>
+	<dispatch-worker w2 h1 h3>
+	<move-material w2 m3 h4>
+	<dispatch-worker w3 h2 h4>
+	<build-brick-walls h4 m3 w3>
+	<dispatch-worker w2 h4 hq>
+	<move-material w2 m5 h4>
+	<move-material w2 m5 h3>
+	<dispatch-worker w3 h4 h3>
+	<build-wood-walls h3 m5 w3>
+	<build-roof h3 m6 w3>
+	<move-material w2 m4 h1>
+	<dispatch-worker w3 h3 h1>
+	<lay-foundation h1 m4 w3>

@@ -1,0 +1,69 @@
+I. Happiness
+
+1) Each territory has a level of happiness, which is a weighted average of the previous n turns, modified by its standard of living function (and spending on standard of living, which is the input to that function).
+
+2) A standard of living function takes a territory's spending on SOL and returns the target happiness that it will eventually achieve if that level is maintained. The function itself is based on a number of factors:
+	
+	A) Technology. For example, crop rotation will provide a boost, especially at lower funding levels. Theatre, though, will provide a boost only at high spending levels.
+
+	B) Ethinicity. Ethnicities that feel marginalized will be less happy. 
+
+	C) Government. This can affect the SOL function in many ways.
+
+	D) Military. Being conquered, or experiencing large-scale conscription, can lead to unhappiness. On the other hand, being a part of a conquering empire can lead to a feeling of optimism.
+
+	E) Overcrowding. Generally, SOL cost increases linearly with population, but when certain tech-dependent limits are reached, the cost will begin to increase faster if the population continues to grow.
+	
+	F) Expectations. Populations come to expect whatever they currently have, and react strongly to drastic changes in either direction.
+	
+	G) Events. Epidemics or droughts can make SOL much more expensive for a limited time.
+
+3) The SOL indirectly determines population growth through happiness. Happy populations reproduce slightly faster, and are much more likely to experience immigration. 
+
+4) It also directly influences population growth, as follows:
+
+	A) A base birth rate is determined by technology.
+	
+	B) A base SOL to achieve that birth rate is also technologically determined. Generally, the higher the base birth rate, the higher the base SOL to reach it.
+	
+	C) If the SOL dips below the base, the growth rate shrinks proportionally. This can cause growth to become negative, simulating famine or disease.
+	
+	D) An SOL above the base level does not increase growth any more, except indirectly through happiness.
+
+II. Industry
+
+1) Each territory has an industry rating, which, along with population, determines how many resources it can spend on SOL, research, more industry, etc.
+
+2) An industrial growth function determines the cost of each additonal unit of industry given current industry levels. It is based on several factors:
+	
+	A) Technology.
+	
+	B) Resources. The presence or absence of certain resources in a territory, often combined with technological developments, will effect the growth function. For example, the presence of coal will greatly decrease industry costs in early industrial age societies.
+	
+	C) Events.
+	
+	D) Overcrowding. Normally industry costs are uneffected by population size, but, as with SOL, if the population exceeds tech-dependent caps, the cost of development will increase.
+
+3) The second function associated with industry is the productivity function. This determines how many resources are produced per person for a given industry/population ratio. In other words, if a territory has 100 people and 10 units of industry per person (1000 total), and the value of the productivity function at x=10 is 5.2, the territory will produce (5.2 * 100 people) = 520 production units. Effectors:
+	
+	A) Technology.
+	
+	B) Happiness. A happier population will produce slightly more.
+
+4) Emmigrants take some industry with them when they go and bring it to their new homes. The percentage is dependent on the circumstances of their emmigration.
+
+III. Land
+
+1) Each square contains terrain types, by % land use
+
+2) Each terrain instance in a square has a function that defines its productivity by usage percentage - so the first 20% of a square's arable lands might be incredibly fertile while the rest is mediocre.
+	
+	A) A terrain type may have several such functions. For example, mountains might contain several types of minerals in various concentrations.
+	
+	B) The terrain itself will have inherent characteristics that interact with tech and other factors to determine the functions. So, a mountain might have minerals that are plentiful but difficult to access until a certain tech (say, fracking) is developed.
+	
+	C) Different types of terrain usage will conflict (i.e., compete for land use). Each usage type will have a defined relationship with every type that determines (again, along with tech) how much they conflict. Of course, if there is no more land left of the correct type, overlap will be 100%.
+	
+		-It is probably not worthwhile to use reasonable statistical approximations of how land use is likely to work.
+	
+	D) So, clearly, the production function mentioned above will be defined primarily by the available land and technology in a territory. Unless otherwise specified by the player, production will be optimized to maximize efficiency across all possible land uses (is this feasible?)

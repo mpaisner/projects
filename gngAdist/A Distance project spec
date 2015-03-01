@@ -1,0 +1,67 @@
+
+Project Summary:
+
+1) Implement the method getDistanceValues(), which takes as parameters a data set, a list of feature extractors for data elements, and an object which can calculate a distance metric. This method returns A-distance values as described below.
+
+2) Write a class which implements the DistanceCalculator interface below for A-distance or some other anomaly detection metric. This metric must return a real-valued estimate of the magnitude or likelihood of an anomaly at each time step, not just a boolean result. If using A-distance, this class can be a wrapper on the existing ADistance class.
+
+3) Acquire the data from Tim Oates' paper (or something similar). This can either be in the form of the original documents and a method to extract margin values, or a prefabricated mapping of documents to margin values. 
+
+4) Create methods to run test setups on this data as described below and generate results
+
+5) Input this data to create a Growing Neural Gas (GNG) network, run tests on that
+
+6) Write methods to generate several different features from the NLP literature, run A-distance and GNG on multi-element vectors of features as described below
+
+7) Try different distance metrics and/or clustering techniques (instead of GNG)
+
+I. Running distance metrics on data
+
+Sequence<Sequence<Float>> getDistanceValues(Sequence<DataElement> data, Sequence<FeatureExtractor> featureExtractors, DistanceCalculator distanceCalc);
+/*
+args: 
+	data - a sequence of data elements; e.g. documents of various types.
+	featureExtractors - a sequence of feature extractors which operate on data elements and return float feature values; e.g. a method which takes a document as input and returns a margin value.
+	distanceCalc - an object implementing the interface described below; a wrapper for the ADistance class might implement this.
+*/
+
+/*
+return: a S of sequences Si, where Si is the vector of A-distance values for all features at time step i. For the baseline example, Si would be a one-element sequence containing the A-distance value returned after adding the margin value for document i.
+*/
+
+interface DistanceCalculator{
+	
+	void initialize(int numFeatures, *params)
+	/*
+	for A-Distance, this will create numFeatures window pairs and initalize the ADistance object. Params are those needed for this initalization, such as the arguments to ADistance.addProportional(), which intializes the intervals.
+	*/
+	
+	void update(Sequence<DataElement> item)
+	/*
+	updates the object for the current time step's data. This is a sequence of feature values; for the base data we are looking at this will be one element long (the margin value).
+	*/
+	
+	float getDistance()
+	/*
+	returns the current distance value
+	*/
+}
+
+II. Testing methods
+
+1) Predefined setups - Choose a data type as the baseline, run a predetermined number of samples of that type through the algorithm, then run a predetermined number of another type, etc. The signature of this testing method might look like:
+
+TestResult runTestSetup(Sequence<Pair<DataType, Integer>> setup)
+
+The 'setup' parameter defines how many of each type of input data should be chosen in what order. Input data should be randomly sampled (without replacement) from the given type. The TestResult method is partially defined below.
+
+2) Random chunks - A-distance (and therefore any neural net constructed using A-distance data) will not work well on completely random data, because there is a time lag after an anomaly starts while the sliding window fills up with anomalous data. Instead, we can test on a setup where there is an initial window of data whose type we know (the baseline), and after that there are randomly chosen chunks of data of the same type. Each chunk should randomly sampled from the given data type, the length of a chunk should be randomly chosen but always greater than the size of the A-distance window, and the method must remember the order of the chunks. One way to do this might be to randomly choose a sequence of chunks, check to make sure it is valid (e.g., it does not sample more from one data type than the number of examples there are), then pass that result as a parameter to the runTestSetup() method above.
+
+
+III. Testing results
+
+1) a TestResult class which stores for each time step the following information
+	i. The type of data which was just input
+	ii. The associated distance value
+
+2) Convenience methods for this class. For example there might be a method which returns a list of data type chunks, or one which calculates the accuracy of the method for a given cutoff (if the distance value is above the cutoff, the method is predicting an anomaly).

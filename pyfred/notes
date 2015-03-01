@@ -1,0 +1,25 @@
+'''
+
+operators:
+	and
+	or
+
+quantifiers:
+	for-all (implied?)
+
+special predicates:
+	exist-n(numeric, var, expression) #tries to match exactly n times (n may be a range) 
+	predicate(name) #creates a new predicate if one does not already exist.
+	in-range(numeric) - evaluated mathematically
+	
+
+other predicates:
+	has-a
+	is-a
+
+truth values:
+	true
+	false
+
+rules:
+		

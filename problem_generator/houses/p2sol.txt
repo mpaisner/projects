@@ -1,0 +1,23 @@
+Solution:
+	<dispatch-worker w3 hq h1>
+	<move-material w3 m5 h2>
+	<dispatch-worker w3 h2 h1>
+	<move-material w3 m4 h2>
+	<dispatch-worker w1 hq h2>
+	<dispatch-worker w3 h2 h1>
+	<move-material w3 m1 h2>
+	<lay-foundation h2 m1 w1>
+	<build-brick-walls h2 m4 w1>
+	<build-roof h2 m5 w1>
+	<house-complete h2>
+	<dispatch-worker w1 h2 h1>
+	<lay-foundation h1 m2 w1>
+	<build-wood-walls h1 m3 w1>
+	<build-roof h1 m6 w1>
+	<dispatch-worker w2 h1 hq>
+	<load-hoses w2>
+	<dispatch-worker w2 hq h1>
+	<put-out-fire w2 h1>
+	<house-complete h1>
+
+#<PRODIGY result: t, 0.74 secs, 498 nodes, 1 sol>

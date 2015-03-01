@@ -1,0 +1,18 @@
+BLOCK(A_)
+BLOCK(B_)
+BLOCK(C_)
+BLOCK(D_)
+
+on(B_, A_)
+on(D_, B_)
+on-table(A_)
+on-table(C_)
+
+
+
+clear(C_)
+clear(D_)
+arm-empty()
+
+
+
